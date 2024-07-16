@@ -1,0 +1,14 @@
+
+td{
+    text-align: end;
+}
+th, td{
+   padding: 0.5rem;
+}
+.hover:hover{
+    box-shadow:10px 10px 5px lightblue;
+    scale: 1.1;
+    transition: 200ms;
+    padding:none;
+    background-color: rgb(107, 165, 216);
+}
