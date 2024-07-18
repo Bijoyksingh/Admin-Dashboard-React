@@ -64,7 +64,7 @@ export default function Header() {
                 whileHover={{ scale: [null, 1.5, 1.4] }}
                 transition={{ duration: 0.3 }}
               >
-                <Link to={"ems/home"}>
+                <Link to={"/"}>
                   <img src={Logo} style={logoStyle} className="logo" alt="logo" />
                 </Link>
               </motion.div>

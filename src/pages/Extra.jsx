@@ -7,12 +7,8 @@ export default function Extra() {
    
 
 <div className="d-flex" >
-      <div style={{width:"10%"}}><SideBar/></div>
-      <div className="" style={{width:"90%"}}>
       
-        <MainContent/>
-        </div>
-      
+      <h1>this is the extra page</h1>
       
     </div>
     

@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 export default function UPSHome() {
   return (
     <div>
-      <h1>UPS</h1>
+      <h1>UPS HOmepage</h1>
     </div>
   )
 }

@@ -11,47 +11,47 @@ import trans from "./trans.png"
 export const NavData=[
  {
     title: 'ENERGY',
-    path:"ems/home",
+    path:"/ems",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={ems} alt="Logo" />
  },
  {
     title: 'WATER',
-    path:"water/home",
+    path:"/water",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={water} alt="Logo" />
  },
  { 
     title: 'DG',
-    path:"dg/home",
+    path:"/dg",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={dg} alt="Logo" />
  },
  {
     title: 'UPS',
-    path:"ups/home",
+    path:"/ups",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={ups} alt="Logo" />
  },
  {
     title: 'TEMP/HUMIDITY',
-    path:"temp/home",
+    path:"/temp",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={temp} alt="Logo" />
  },
  {
     title: 'HVAC',
-    path:"hvac/home",
+    path:"/hvac",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={hvac} alt="Logo" />
  },
  {
     title: 'FIRE SYSTEM',
-    path:"fire/home",
+    path:"/fire",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={fire} alt="Logo" />
  },
  {
     title: 'NBSAFE',
-    path:"nbsafe/home",
+    path:"/nbsafe",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={nbsafe} alt="Logo" />
  },
  {
     title: 'TRANSFORMER',
-    path:"trans/home",
+    path:"/trans",
     icon:<img style={{width:"1.5rem", marginRight:"0.5rem"}} src={trans} alt="Logo" />
  },
 ]

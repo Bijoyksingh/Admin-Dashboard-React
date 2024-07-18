@@ -1,35 +1,14 @@
-import { SideBarData } from "../../data/SidBarData/SideBarData";
-import { NavLink } from "react-router-dom";
 import "./SideBar.css";
+// import PropTypes from 'prop-types';
 
 
-
-export default function SideBar() {
+export default function SideBar({children}) {
   return (
-    <div id="sidebar" className="sidebar border">
+    <div id="sidebar" className="sidebar ">
       <ul>
-        {SideBarData.map((item, index) => (
-          <NavLink
-            key={index}
-            to={item.path}
-            className={({ isActive, isPending, isTransitioning }) =>
-              [
-                isPending ? "pending" : "",
-                isActive ? "active" : "",
-                isTransitioning ? "transitioning" : "",
-              ]
-            }
-          >
-            <li>
-              {item.icon}
-              <br />
-              {item.title}
-            </li>
-            <hr />
-            
-          </NavLink>
-        ))}
+      {children}
       </ul>
     </div>
   );
 }
+
