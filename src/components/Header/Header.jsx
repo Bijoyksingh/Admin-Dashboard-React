@@ -8,7 +8,9 @@ import Avatar from "@mui/material/Avatar";
 import { Link, NavLink } from "react-router-dom";
 import { NavData } from "../../data/NavData/NavData";
 import Logo from "/logo1.png"
-
+import { IconButton } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import PropTypes from 'prop-types';
 
 const logoStyle = {
   width: "3rem",
@@ -16,7 +18,8 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-export default function Header() {
+export default function Header({onClick}) {
+ 
   return (
     <>
       <AppBar
@@ -51,10 +54,19 @@ export default function Header() {
                   : "0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)",
             })}
           >
+            <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={onClick}
+            sx={{flexGrow:1, mr: 2, display: { sm: 'flex', md:"none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: "none", md: "flex" },
+                display: { xs:"none",sm:"none", md: "flex"},
                 justifyContent: "flex-start",
                 px: 0,
               }}
@@ -113,4 +125,7 @@ export default function Header() {
       </AppBar>
     </>
   );
+}
+Header.propTypes = {
+  onClick:PropTypes.func
 }

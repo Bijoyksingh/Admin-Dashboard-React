@@ -9,11 +9,6 @@ text-decoration: none;
   color: rgb(34, 24, 215);
   font-weight:900;
   font-size: 23px;
- border-top: 2px solid red;
- border-right: 2px solid red;
- border-left: 2px solid red;
- border-radius: 50px;
- padding: 4px;
 }
 
 .nav-items{
