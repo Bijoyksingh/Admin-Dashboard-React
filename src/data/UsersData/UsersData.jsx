@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 export default function UsersData() {
 const [data, setData]= useState([]);
-
+const url = "/api/user";
  useEffect(()=>{
-        axios.get('/api/user')
+        axios.get(url)
         .then( (response)=> {
           // handle success
           setData(response.data.users);
