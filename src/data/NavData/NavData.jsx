@@ -7,8 +7,19 @@ import hvac from "./hvac.png"
 import nbsafe from "./nbsafe.png"
 import temp from "./temp.png"
 import trans from "./trans.png"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const NavData=[
+   {
+      title: 'Admin',
+      path:"/admin",
+      icon:<AccountCircleIcon/>
+   },
+   {
+      title: 'User',
+      path:"/user/device1",
+      icon:<AccountCircleIcon/>
+   },
  {
     title: 'ENERGY',
     path:"/ems",

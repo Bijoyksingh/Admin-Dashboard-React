@@ -7,7 +7,46 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HelpIcon from '@mui/icons-material/Help';
 import MarkunreadMailboxOutlinedIcon from '@mui/icons-material/MarkunreadMailboxOutlined';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
+import DevicesIcon from '@mui/icons-material/Devices';
 
+export const AdminSideBarData = [
+    {
+        title: 'Dashboard',
+        icon: <DashboardIcon />,
+        path: '/admin'
+    },
+    {
+        title: 'Devices',
+        icon: <DevicesIcon />,
+        path: '/admin/devices'
+    },
+    {
+        title: 'Manage Users',
+        icon: <SupervisedUserCircleIcon />,
+        path: '/admin/users'
+    },
+    {
+        title: 'Profile',
+        icon: <AccountBoxIcon />,
+        path: '/admin/profile'
+    },
+    {
+        title: 'My Account',
+        icon: <SwitchAccountIcon />,
+        path: '/admin/account'
+    },
+]
+
+export const UserSideBarData = [
+    {
+        title: 'Dashboard',
+        path:"/user/device1",
+        icon:<DashboardIcon/>
+    },
+]
 
 export const EmsSideBarData=[
     {

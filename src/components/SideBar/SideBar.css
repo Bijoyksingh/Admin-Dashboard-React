@@ -32,4 +32,5 @@ color: black;
     flex-direction: column; */
     position: fixed;
     overflow-y: auto;
+    z-index: 100;
   }

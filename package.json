@@ -26,6 +26,7 @@
     "@nivo/geo": "^0.87.0",
     "@nivo/line": "^0.87.0",
     "@nivo/pie": "^0.87.0",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "formik": "^2.4.6",
     "framer-motion": "^11.2.14",
@@ -36,6 +37,7 @@
     "react-google-charts": "^4.0.1",
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.24.1",
+    "react-virtuoso": "^4.7.13",
     "styled-components": "^6.1.11",
     "yup": "^1.4.0"
   },

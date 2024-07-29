@@ -7,10 +7,11 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import { Link, NavLink } from "react-router-dom";
 import { NavData } from "../../data/NavData/NavData";
-import Logo from "/logo1.png"
-import { IconButton } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import PropTypes from 'prop-types';
+import Logo from "/logo1.png";
+import { IconButton, Tabs } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import PropTypes from "prop-types";
+import { useState } from "react";
 
 const logoStyle = {
   width: "3rem",
@@ -18,8 +19,13 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-export default function Header({onClick}) {
- 
+export default function Header({ onClick }) {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
       <AppBar
@@ -55,18 +61,18 @@ export default function Header({onClick}) {
             })}
           >
             <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={onClick}
-            sx={{flexGrow:1, mr: 2, display: { sm: 'flex', md:"none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={onClick}
+              sx={{ flexGrow: 1, display: { sm: "flex", md: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs:"none",sm:"none", md: "flex"},
+                display: { xs: "none", sm: "none", md: "flex" },
                 justifyContent: "flex-start",
                 px: 0,
               }}
@@ -77,48 +83,71 @@ export default function Header({onClick}) {
                 transition={{ duration: 0.3 }}
               >
                 <Link to={"/"}>
-                  <img src={Logo} style={logoStyle} className="logo" alt="logo" />
+                  <img
+                    src={Logo}
+                    style={logoStyle}
+                    className="logo"
+                    alt="logo"
+                  />
                 </Link>
               </motion.div>
             </Box>
 
             <Box
-              className="gap-3 nav-items"
+              className="gap-3 nav-items overflow-x-auto"
               sx={{
                 flexGrow: 1,
-                // maxWidth: { xs: 320, sm: 480, md:499 }
               }}
             >
-              {NavData.map((item, index) => (
-                <NavLink
-                  key={index}
-                  to={item.path}
-                  className={({ isActive, isPending, isTransitioning }) =>
-                    [
-                      isPending ? "pending" : "",
-                      isActive ? "active" : "",
-                      isTransitioning ? "transitioning" : "",
-                    ].join(" ")
-                  }
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.4 }}
-                    whileTap={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              <Tabs
+                TabIndicatorProps={{
+                  style: {
+                    display: "none",
+                  },
+                }}
+                value={value}
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons
+                allowScrollButtonsMobile
+                aria-label="scrollable force tabs example"
+              >
+                {NavData.map((item, index) => (
+                  <NavLink
+                    key={index}
+                    to={item.path}
+                    className={({ isActive, isPending, isTransitioning }) =>
+                      [
+                        isPending ? "pending" : "",
+                        isActive ? "active" : "",
+                        isTransitioning ? "transitioning" : "",
+                      ].join(" ")
+                    }
                   >
-                      {item.icon}{item.title}
-                  </motion.div>
-                </NavLink>
-              ))}
+                    <motion.div
+                      whileHover={{ scale: 1.4 }}
+                      whileTap={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    >
+                      {item.icon}
+                      {item.title}
+                    </motion.div>
+                  </NavLink>
+                ))}
+              </Tabs>
             </Box>
 
-            {/* avatar box  */}
+            {/* avatar section */}
             <Box>
-            <Avatar
-        alt="Remy Sharp"
-        src="#"
-        sx={{ background:"lightblue",width: 56, height: 56 }}
-      />
+              <Avatar
+                alt="Remy Sharp"
+                src="#"
+                sx={{ flexGrow: 1, background: "lightblue" }}
+              />
             </Box>
           </Toolbar>
         </Container>
@@ -127,5 +156,5 @@ export default function Header({onClick}) {
   );
 }
 Header.propTypes = {
-  onClick:PropTypes.func
-}
+  onClick: PropTypes.func,
+};
