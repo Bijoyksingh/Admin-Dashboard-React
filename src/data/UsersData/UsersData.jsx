@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 
 export default function UsersData() {
 const [data, setData]= useState([]);
-const url = "/api/user";
+// const url = "/api/user";
+const url = "http://localhost:8080/api/user"
  useEffect(()=>{
         axios.get(url)
         .then( (response)=> {
