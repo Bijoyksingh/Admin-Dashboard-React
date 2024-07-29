@@ -1,39 +1,14 @@
-
+import UsersData from "../../data/UsersData/UsersData";
+import TopBox from "../../components/Main/Contents/TopBox";
 
 
 export default function AdminHome() {
-
+let {data}= UsersData();
 
   return (
-    <div className="w-100 p-3">
-      
-      
-     {/* <Table>
-      <thead>
-        <tr>
-          <th>SL No.</th>
-          <th>Username</th>
-          <th>Name</th>
-          <th>Contact</th>
-          <th>Email</th>
-          <th>Alloted Devices</th>
-        </tr>
-      </thead>
-      <tbody>
-      {data.map((item, index) => (
-            <tr key={index}>
-              <td>{index+1}</td>
-              <td>{item.username}</td>
-              <td>{item.fullname}</td>
-              <td>{item.phone}</td>
-              <td>{item.email}</td>
-              <td>{item.alotdevices}</td>
-            </tr>
-          ))}
-          
-      </tbody>
-     </Table> */}
-      
+    <div className="w-100 p-3 gap-3 d-flex">
+      <TopBox title="Total Users" value={data.length} />
+      <TopBox title="Total Devices" value='N/A' /> 
     </div>
   )
 }

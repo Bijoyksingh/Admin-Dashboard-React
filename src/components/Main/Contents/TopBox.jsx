@@ -11,7 +11,7 @@ export default function TopBox(props) {
 
   return (
     <div className="d-flex border rounded-pill col-4 p-4 justify-content-between overflow-hidden">
-          <h4>{props.title}</h4><p>{props.value}</p>
+          <h3>{props.title}</h3><h5>{props.value}</h5>
     </div>
   )
 }
