@@ -3,7 +3,6 @@ import Extra from "../pages/Extra";
 import ErrorPage from "../ErrorPage.jsx";
 import NotFound from "../pages/NotFound.jsx";
 import SignUp from "../pages/SignUp.jsx";
-import SignIn from "../pages/SignIn.jsx";
 import Support from "../pages/Support.jsx";
 import MainLayout from "./MainLayout.jsx";
 //Admin Routes Imports
@@ -60,6 +59,7 @@ import NBSafeHome from "../pages/Dashboard/NBSafe/NBSafeHome.jsx";
 //Transformer Routes Imports
 import TransLayout from "../pages/Dashboard/Transformer/TransLayout.jsx";
 import TransHome from "../pages/Dashboard/Transformer/TransHome.jsx";
+import SignIn from "../pages/SignIn.jsx";
 // import RequireAuth from "../Auth/RequireAuth.jsx";
 
 export const router = createBrowserRouter([
