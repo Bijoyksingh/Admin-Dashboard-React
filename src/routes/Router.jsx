@@ -59,7 +59,7 @@ import NBSafeHome from "../pages/Dashboard/NBSafe/NBSafeHome.jsx";
 //Transformer Routes Imports
 import TransLayout from "../pages/Dashboard/Transformer/TransLayout.jsx";
 import TransHome from "../pages/Dashboard/Transformer/TransHome.jsx";
-import SignIn from "../pages/SignIn.jsx";
+
 // import RequireAuth from "../Auth/RequireAuth.jsx";
 
 export const router = createBrowserRouter([
@@ -362,11 +362,6 @@ export const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/signin",
-    element: <SignIn />,
     errorElement: <ErrorPage />,
   },
   {
