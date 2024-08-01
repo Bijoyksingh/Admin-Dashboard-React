@@ -1,4 +1,4 @@
-import UsersData from "../../data/UsersData/UsersData";
+import { UsersData } from "../../api/api";
 import TopBox from "../../components/Main/Contents/TopBox";
 
 

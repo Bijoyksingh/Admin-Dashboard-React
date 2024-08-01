@@ -59,6 +59,8 @@ import NBSafeHome from "../pages/Dashboard/NBSafe/NBSafeHome.jsx";
 //Transformer Routes Imports
 import TransLayout from "../pages/Dashboard/Transformer/TransLayout.jsx";
 import TransHome from "../pages/Dashboard/Transformer/TransHome.jsx";
+import EditUser from "../pages/CRUD/Edit/EditUser.jsx";
+import Add from "../pages/CRUD/Add/Add.jsx";
 
 // import RequireAuth from "../Auth/RequireAuth.jsx";
 
@@ -105,7 +107,12 @@ export const router = createBrowserRouter([
           {
             path: "/admin/users",
             element: <ManageUsers />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorPage />,            
+          },
+          {
+            path:"/admin/users/adduser",
+            element:<Add/>,
+            errorElement: <ErrorPage />
           },
           {
             path: "/admin/profile",
@@ -357,6 +364,16 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "/user/:id/edit",
+        element: <EditUser />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/user/new",
+        element: <Add />,
+        errorElement: <ErrorPage />,
+      }
     ],
   },
   {

@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
+import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
 import SearchBar from "../../components/Main/Contents/SearchBar";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import UsersData from "../../data/UsersData/UsersData";
+import { NavLink } from "react-router-dom";
+import { UsersData } from "../../api/api";
 
 const tHead =['SL No.','Username','Name','Contact','Email','Alloted Devices',]
 
@@ -15,9 +16,11 @@ export default function ManageUsers() {
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
+  
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
+    
   
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(+event.target.value);
@@ -30,9 +33,9 @@ export default function ManageUsers() {
     <Box sx={{padding:'1rem'}}>
     <h1>Manage Users</h1>
     <Grid container alignItems={"center"} justifyContent={"space-between"}>
-      <Button variant="contained">
+      <NavLink className="text-bg-primary rounded p-2 text-decoration-none" to={"/admin/users/adduser"} variant="contained" >
       <PersonAddIcon/> Add User
-      </Button>
+      </NavLink>
       <SearchBar onChange={handleSearch} value={search}/>
     </Grid>
     {/* Data Table */}
@@ -64,7 +67,7 @@ export default function ManageUsers() {
             <TableCell>{item.phone}</TableCell>
             <TableCell>{item.email}</TableCell>
             <TableCell>{item.alotdevices}</TableCell>
-            <TableCell>Edit</TableCell>
+            <TableCell><NavLink to={`/user/${item.id}/edit`} >Edit</NavLink></TableCell>
             <TableCell>Delete</TableCell>
           </TableRow>
         ))

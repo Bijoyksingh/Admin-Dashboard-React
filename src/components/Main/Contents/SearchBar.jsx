@@ -5,7 +5,7 @@ const SearchBar = ({ value, onChange }) => {
   return (
     <Grid item xs={12} sm={12} md={4} lg={3} p={2}>
       <TextField
-        label="Search Name"
+        label="Search By Name"
         variant="outlined"
         value={value}
         onChange={onChange}
