@@ -110,6 +110,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,            
           },
           {
+            path: "/admin/users/:id/edit",
+            element: <EditUser />,
+            errorElement: <ErrorPage />,            
+          },
+          {
             path:"/admin/users/adduser",
             element:<Add/>,
             errorElement: <ErrorPage />

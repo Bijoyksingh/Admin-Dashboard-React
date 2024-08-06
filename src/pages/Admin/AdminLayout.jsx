@@ -1,7 +1,6 @@
-import { Navbar } from "react-bootstrap";
-import { NavLink, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import AdminSideBar from "../../components/SideBar/AdminSideBar";
-import { Box, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 export default function AdminLayout() {
   return (

@@ -12,6 +12,7 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
 import DevicesIcon from '@mui/icons-material/Devices';
 
+
 export const AdminSideBarData = [
     {
         title: 'Dashboard',
@@ -43,8 +44,18 @@ export const AdminSideBarData = [
 export const UserSideBarData = [
     {
         title: 'Dashboard',
-        path:"/user/device1",
+        path:"/user",
         icon:<DashboardIcon/>
+    },
+    {
+        title: 'Manage Devices',
+        path:"/user/devices",
+        icon:<DevicesIcon/>
+    },
+    {
+        title: 'Profile',
+        path:"/user/profile",
+        icon:<AccountBoxIcon/>
     },
 ]
 

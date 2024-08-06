@@ -5,15 +5,13 @@ import {
   Button,
   IconButton,
   InputLabel,
-  MenuItem,
   Slide,
   Snackbar,
   TextField,
 } from "@mui/material";
 import { useState } from "react";
 import { AddUser } from "../../../api/api";
-
-const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { useNavigate } from "react-router-dom";
 
 function SlideTransition(props) {
   return <Slide {...props} direction="up" />;
@@ -28,7 +26,8 @@ export default function Add() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState('')
+  const [severity, setSeverity] = useState("");
+  const navigate = useNavigate();
   const [alert, setAlert] = useState({
     open: false,
     Transition: SlideTransition,
@@ -58,13 +57,13 @@ export default function Add() {
         setPhone("");
         setUsername("");
         setPassword("");
-        setSeverity('success');
+        setSeverity("success");
         handleClick();
       })
       .catch((error) => {
         console.error("error adding user:", error);
         setMessage("Error while adding user");
-        setSeverity('error');
+        setSeverity("error");
         handleClick();
       });
   };
@@ -98,8 +97,8 @@ export default function Add() {
         <div className=" d-flex align-items-center ">
           <InputLabel className="fs-6 px-4 fw-bold">Email</InputLabel>
           <TextField
-            className=""
             required
+            type="email"
             label="Email"
             sx={{ width: "50%" }}
             value={email}
@@ -117,6 +116,7 @@ export default function Add() {
           <InputLabel className="fs-6 px-3 fw-bold">Mobile</InputLabel>
           <TextField
             required
+            type="number"
             label="Mobile"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -126,18 +126,12 @@ export default function Add() {
           <InputLabel className="fs-6 px-3 fw-bold">Device</InputLabel>
           <TextField
             required
-            select
             label="Device"
+            type="number"
             value={device}
             onChange={(e) => setDevice(e.target.value)}
             helperText="Enter number between 1 to 10"
-          >
-            {num.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </TextField>
+          />
         </div>
         <div className="d-flex px-2 align-items-center">
           <InputLabel className="fs-6 fw-bold ">Username</InputLabel>
@@ -168,6 +162,17 @@ export default function Add() {
           />
         </div>
         <div className="text-center m-3">
+          <Button
+            variant="contained"
+            color="error"
+            sx={{ m: 1 }}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/admin/users");
+            }}
+          >
+            Cancle
+          </Button>
           <Button variant="contained" sx={{ m: 1 }} onClick={handleReset}>
             Reset
           </Button>
@@ -186,12 +191,13 @@ export default function Add() {
         open={alert.open}
         onClose={handleClose}
         TransitionComponent={alert.Transition}
-        // message={message}
         key={alert.Transition}
         autoHideDuration={3000}
-      ><Alert severity={severity} sx={{ width: '100%' }}>
-      {message}
-    </Alert></Snackbar>
+      >
+        <Alert severity={severity} sx={{ width: "100%" }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

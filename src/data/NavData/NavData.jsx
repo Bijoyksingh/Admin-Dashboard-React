@@ -17,7 +17,7 @@ export const NavData=[
    },
    {
       title: 'User',
-      path:"/user/device1",
+      path:"/user",
       icon:<AccountCircleIcon/>
    },
  {
