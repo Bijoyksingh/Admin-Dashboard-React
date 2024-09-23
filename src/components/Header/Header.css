@@ -1,5 +1,5 @@
 .nav-items a{
-  color:blueviolet;
+  color:rgb(58, 55, 200);
 font-weight:bold;
 font-size:1rem;
 padding: 5px;
@@ -33,6 +33,22 @@ flex-wrap: nowrap;
   }
 }
 
+.login{
+  background-color: #0d60e6;
+  color: white;
+  padding: 5px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.login:hover{
+  background-color: white;
+  color: #008CBA;
+  box-shadow: 0 9px #999;
+}
 
 /* .nav-items a:hover {
     background: #e3e3e3;

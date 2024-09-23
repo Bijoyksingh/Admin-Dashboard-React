@@ -8,6 +8,7 @@ import {
   Snackbar,
   Slide,
   TextField,
+  MenuItem,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { GetUser, UpdateUser } from "../../../api/api";
@@ -24,8 +25,9 @@ export default function EditUser() {
 
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
-  const [device, setDevice] = useState();
-  const [phone, setPhone] = useState();
+  const [device, setDevice] = useState("");
+  const [role, setRole] = useState("");
+  const [phone, setPhone] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -53,6 +55,7 @@ export default function EditUser() {
       setEmail(gotUser.email);
       setFullname(gotUser.fullname);
       setDevice(gotUser.alotdevices);
+      setRole(gotUser.role);
       setPhone(gotUser.phone);
       setUsername(gotUser.username);
       setPassword(gotUser.password);
@@ -61,7 +64,7 @@ export default function EditUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newData = { username, fullname, phone, device, email, password };
+    const newData = { username, fullname, role, phone, device, email, password };
     UpdateUser(id, newData)
       .then((response) => {
         setMessage(response.data);
@@ -117,6 +120,18 @@ export default function EditUser() {
             onChange={(e) => setDevice(e.target.value)}
             helperText="Enter number between 1 to 10"
           />
+          <InputLabel className="fs-6 px-3 fw-bold">Select Role</InputLabel>
+          <TextField
+          select
+          label="Select Role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            sx={{minWidth:"25%"}}
+            disabled={role === 'admin'}
+          >
+            <MenuItem value="admin">Admin</MenuItem>
+            <MenuItem value="user">User</MenuItem>
+          </TextField>
         </div>
         <div className="d-flex px-2 align-items-center">
           <InputLabel className="fs-6 fw-bold ">Username</InputLabel>

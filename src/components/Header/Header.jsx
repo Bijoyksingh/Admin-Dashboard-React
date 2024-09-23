@@ -8,10 +8,13 @@ import Avatar from "@mui/material/Avatar";
 import { Link, NavLink } from "react-router-dom";
 import { NavData } from "../../data/NavData/NavData";
 import Logo from "/logo1.png";
-import { IconButton, Tabs } from "@mui/material";
+import { Button, IconButton, Menu, MenuItem, Tabs } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Auth0Context } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const logoStyle = {
   width: "3rem",
@@ -20,12 +23,24 @@ const logoStyle = {
 };
 
 export default function Header({ onClick }) {
+  const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  // const { isLoggedIn, userProfile, logout } =
+  //   useContext(Auth0Context);
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const handleOpenUserMenu = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <>
       <AppBar
@@ -46,10 +61,10 @@ export default function Header({ onClick }) {
               justifyContent: "space-between",
               flexShrink: 0,
               borderRadius: "999px",
-              bgcolor:
-                theme.palette.mode === "light"
-                  ? "rgba(255, 255, 255, 0.4)"
-                  : "rgba(0, 0, 0, 0.4)",
+              bgcolor: "#8dade0",
+              // theme.palette.mode === "light"
+              //   ? "rgba(255, 255, 255, 0.4)"
+              //   : "rgba(0, 0, 0, 0.4)",
               backdropFilter: "blur(24px)",
               maxHeight: 40,
               border: "1px solid",
@@ -142,13 +157,54 @@ export default function Header({ onClick }) {
             </Box>
 
             {/* avatar section */}
-            <Box>
+            {isAuthenticated ? (
+              <Box>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar
+                    src={user.picture}
+                    alt={user.name}
+                    sx={{ flexGrow: 1, background: "lightblue" }}
+                  />
+                </IconButton>
+                <Menu
+                  sx={{ mt: 1.5 }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem>Profile</MenuItem>
+                  <MenuItem
+                    onClick={() => logout({ returnTo: window.location.origin })}
+                  >
+                    Logout
+                    <LogoutIcon />
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <Button variant="contained" className="login" onClick={() => loginWithRedirect()} >
+                LOG IN
+              </Button>
+            )}
+            {/* <Box >
+            <NavLink className="login" to={"/signin"} >LOG IN</NavLink>
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
                 alt="Remy Sharp"
                 src="#"
                 sx={{ flexGrow: 1, background: "lightblue" }}
               />
-            </Box>
+              </IconButton>
+              <Menu
+              sx={{ mt: 1.5 }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        >
+        <MenuItem >Profile</MenuItem>
+        <MenuItem >Logout<LogoutIcon/></MenuItem>
+      </Menu>
+            </Box> */}
           </Toolbar>
         </Container>
       </AppBar>

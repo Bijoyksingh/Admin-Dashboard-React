@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Admin.css";
 import {
   Box,
   Button,
@@ -18,6 +19,7 @@ import {
   TablePagination,
   TableRow,
   TextField,
+  Tooltip,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -34,7 +36,8 @@ const tHead = [
   { title: "Name" },
   { title: "Contact" },
   { title: "Email" },
-  { title: "Alloted Devices" },
+  { title: "Roll" },
+  { title: "Devices" },
   { title: "Actions", colSpan: 2 },
 ];
 
@@ -69,7 +72,6 @@ export default function ManageUsers() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  
 
   const handleDelete = () => {
     const id = dltId;
@@ -87,7 +89,7 @@ export default function ManageUsers() {
 
   return (
     <Box sx={{ padding: "1rem" }}>
-      <h1>Manage Users</h1>
+      <h1 className="text-center text-bg-primary rounded-pill">Manage Users</h1>
       <Grid container alignItems={"center"} justifyContent={"space-between"}>
         <NavLink
           className="text-bg-primary rounded p-2 text-decoration-none"
@@ -126,20 +128,37 @@ export default function ManageUsers() {
                     <TableCell>{item.fullname}</TableCell>
                     <TableCell>{item.phone}</TableCell>
                     <TableCell>{item.email}</TableCell>
-                    <TableCell>{item.alotdevices}</TableCell>
+                    <TableCell>{item.role}</TableCell>
+                    <TableCell align="center">{item.alotdevices}</TableCell>
                     <TableCell className="d-flex">
-                      <NavLink to={`/admin/users/${item.id}/edit`}>
-                        <EditIcon />
-                      </NavLink>
-                      <Button
-                        onClick={() => handleClickOpen(item.id)}
-                        color="error"
-                        className="p-0"
+                      <Tooltip arrow
+                      placement="top"
+                       title="Edit">
+                        <NavLink to={`/admin/users/${item.id}/edit`}>
+                          <EditIcon />
+                        </NavLink>
+                      </Tooltip>
+                      <Tooltip
+                      arrow
+                      placement="top"
+                        title={
+                          item.role === "admin"
+                            ? "You're not authorized"
+                            : "Delete"
+                        }
                       >
-                        <DeleteIcon />
-                      </Button>
+                        <span>
+                          <Button
+                            onClick={() => handleClickOpen(item.id)}
+                            color="error"
+                            className="p-0"
+                            disabled={item.role === "admin"}
+                          >
+                            <DeleteIcon />
+                          </Button>
+                        </span>
+                      </Tooltip>
                     </TableCell>
-                    <TableCell></TableCell>
                   </TableRow>
                 ))}
             </TableBody>

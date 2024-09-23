@@ -48,7 +48,7 @@ export const UserSideBarData = [
         icon:<DashboardIcon/>
     },
     {
-        title: 'Manage Devices',
+        title: 'Devices',
         path:"/user/devices",
         icon:<DevicesIcon/>
     },

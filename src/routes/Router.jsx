@@ -1,10 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Extra from "../pages/Extra";
+import Extra1 from "../pages/Extra1";
 import ErrorPage from "../ErrorPage.jsx";
 import NotFound from "../pages/NotFound.jsx";
+import SignIn from "../pages/SignIn.jsx";
 import SignUp from "../pages/SignUp.jsx";
 import Support from "../pages/Support.jsx";
 import MainLayout from "./MainLayout.jsx";
+import Home from "../pages/Home";
 //Admin Routes Imports
 import AdminLayout from "../pages/Admin/AdminLayout.jsx";
 import AdminHome from "../pages/Admin/AdminHome.jsx";
@@ -15,6 +18,8 @@ import AdminAccount from "../pages/Admin/AdminAccount.jsx";
 // User Routes Imports
 import UserLayout from "../pages/Users/UserLayout.jsx";
 import User from "../pages/Users/User.jsx";
+import Profile from "../pages/Users/Profile.jsx"
+import ManageDevices from "../pages/Users/Devices.jsx";
 //Ems Routes Imports
 import EmsLayout from "../pages/Dashboard/EMS/EmsLayout.jsx";
 import EmsHome from "../pages/Dashboard/EMS/EmsHome.jsx";
@@ -60,9 +65,12 @@ import NBSafeHome from "../pages/Dashboard/NBSafe/NBSafeHome.jsx";
 import TransLayout from "../pages/Dashboard/Transformer/TransLayout.jsx";
 import TransHome from "../pages/Dashboard/Transformer/TransHome.jsx";
 import EditUser from "../pages/CRUD/Edit/EditUser.jsx";
-import Add from "../pages/CRUD/Add/Add.jsx";
+import Add from "../pages/CRUD/Add/AddUsers.jsx";
+import AddDevices from "../pages/CRUD/Add/AddDevices.jsx";
+import EditDevice from "../pages/CRUD/Edit/EditDevice.jsx";
 
-// import RequireAuth from "../Auth/RequireAuth.jsx";
+
+import RequireAuth from "../Auth/RequireAuth.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -76,8 +84,13 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
+        path: "/",
+        element: <Home/>,
+        errorElement: <ErrorPage />,
+      },
+      {
         path: "/user",
-        // element:<RequireAuth><User /></RequireAuth>,
+        // element:<RequireAuth><UserLayout /></RequireAuth>,
         element: <UserLayout />,
         errorElement: <ErrorPage />,
         children: [
@@ -86,11 +99,21 @@ export const router = createBrowserRouter([
             element: <User />,
             errorElement: <ErrorPage />,
           },
+          {
+            path: "/user/devices",
+            element: <ManageDevices />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/user/profile",
+            element: <Profile />,
+            errorElement: <ErrorPage />,
+          },
         ],
       },
       {
         path: "/admin",
-        // element:<RequireAuth><Admin /></RequireAuth>,
+        // element:<RequireAuth><AdminLayout /></RequireAuth>,
         element: <AdminLayout />,
         errorElement: <ErrorPage />,
         children: [
@@ -103,6 +126,16 @@ export const router = createBrowserRouter([
             path: "/admin/devices",
             element: <AllDevices />,
             errorElement: <ErrorPage />,
+          },
+          {
+            path: "/admin/devices/:id/edit",
+            element: <EditDevice />,
+            errorElement: <ErrorPage />,            
+          },
+          {
+            path:"/admin/devices/addDevice",
+            element:<AddDevices/>,
+            errorElement: <ErrorPage />
           },
           {
             path: "/admin/users",
@@ -387,8 +420,18 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/signin",
+    element: <SignIn />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/extra",
     element: <Extra />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/extra1",
+    element: <Extra1 />,
     errorElement: <ErrorPage />,
   },
   {

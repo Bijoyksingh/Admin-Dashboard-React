@@ -5,6 +5,7 @@ import {
   Button,
   IconButton,
   InputLabel,
+  MenuItem,
   Slide,
   Snackbar,
   TextField,
@@ -17,11 +18,12 @@ function SlideTransition(props) {
   return <Slide {...props} direction="up" />;
 }
 
-export default function Add() {
+export default function AddUsers() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [device, setDevice] = useState("");
   const [fullname, setFullname] = useState("");
+  const [role, setRole] = useState("");
   const [phone, setPhone] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -47,13 +49,14 @@ export default function Add() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const addData = { username, fullname, phone, device, email, password };
+    const addData = { username, fullname, phone, device, role, email, password };
     AddUser(addData)
       .then((response) => {
         setMessage(response.data);
         setEmail("");
         setDevice("");
         setFullname("");
+        setRole("");
         setPhone("");
         setUsername("");
         setPassword("");
@@ -72,6 +75,7 @@ export default function Add() {
     setEmail("");
     setDevice("");
     setFullname("");
+    setRole("");
     setPhone("");
     setUsername("");
     setPassword("");
@@ -132,6 +136,18 @@ export default function Add() {
             onChange={(e) => setDevice(e.target.value)}
             helperText="Enter number between 1 to 10"
           />
+          <InputLabel className="fs-6 px-3 fw-bold">Select Role</InputLabel>
+          <TextField
+          select
+          label="Select Role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            placeholder="Select a role"
+            sx={{minWidth:"25%"}}
+          >
+            <MenuItem value="admin">Admin</MenuItem>
+            <MenuItem value="user">User</MenuItem>
+          </TextField>
         </div>
         <div className="d-flex px-2 align-items-center">
           <InputLabel className="fs-6 fw-bold ">Username</InputLabel>
