@@ -11,9 +11,9 @@ import Logo from "/logo1.png";
 import { Button, IconButton, Menu, MenuItem, Tabs } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Auth0Context } from "@auth0/auth0-react";
+// import { Auth0Context } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const logoStyle = {
