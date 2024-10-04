@@ -12,11 +12,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Alert, AlertTitle } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { UserSignin } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 import { Cookies } from "react-cookie";
+import useAuth from "../hooks/useAuth";
+import AuthContext from "../Context/AuthProvider ";
+import {jwtDecode} from 'jwt-decode';
 
 const logoStyle = {
   width: "4rem",
@@ -30,8 +33,8 @@ export default function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
-  const cookies = new Cookies();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,23 +45,49 @@ export default function SignIn() {
     const user = { username, password };
     UserSignin(user)
     .then((response) => {
-      const { token } = response.data;
-      // Store the token in a secure cookie
-      cookies.set('token', token, { secure: true, sameSite: 'strict', httpOnly: true });
-      if (response.data.role === "admin") {
-        // Redirect to admin page
-        navigate("/admin", { replace: true });
-      } else {
-        // Redirect to user page
-        navigate("/user", { replace: true });
+      const data = response.data;
+      console.log(data)
+      if (data.message === "User signed in successfully"){
+        const token = data.token;
+        const user = jwtDecode(token);
+        // Cookies.set('authToken', token, { expires: 7 });
+        setAuth({ token, user });
+        console.log(user.role)
+        navigate(user.role === "admin" ? "/admin" : "/user", { replace: true }); 
+      }else {
+        setError(data.message);
+      console.error(data.message);
       }
-      console.log(response);
     })
     .catch((error) => {
-      setError(error.response.data.message);
+      setError(error.message);
       console.error(error);
     });
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!username || !password) {
+  //     setError("Please fill out all fields");
+  //     return;
+  //   }
+  //   const user = { username, password };
+  //   UserSignin(user)
+  //   .then((response) => {
+  //     if (response.data.role === "admin") {
+  //       // Redirect to admin page
+  //       navigate("/admin", { replace: true });
+  //     } else {
+  //       // Redirect to user page
+  //       navigate("/user", { replace: true });
+  //     }
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     setError(error.response.data.message);
+  //     console.error(error);
+  //   });
+  // };
 
   return (
     <ThemeProvider theme={defaultTheme}>

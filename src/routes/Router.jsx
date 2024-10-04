@@ -90,12 +90,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/user",
-        // element:<RequireAuth><UserLayout /></RequireAuth>,
-        element: <UserLayout />,
+        element:<RequireAuth roles={['user']}><UserLayout /></RequireAuth>,
+        // element: <UserLayout />,
         errorElement: <ErrorPage />,
         children: [
           {
             path: "/user",
+            element: <User />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/user/home",
             element: <User />,
             errorElement: <ErrorPage />,
           },
@@ -113,12 +118,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/admin",
-        // element:<RequireAuth><AdminLayout /></RequireAuth>,
-        element: <AdminLayout />,
+        element:<RequireAuth><AdminLayout /></RequireAuth>,
+        // element: <AdminLayout />,
         errorElement: <ErrorPage />,
         children: [
           {
             path: "/admin",
+            element: <AdminHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/admin/home",
             element: <AdminHome />,
             errorElement: <ErrorPage />,
           },
@@ -175,6 +185,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: "/ems/home",
+            element: <EmsHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: "/ems/analysis",
             element: <EmsAnalysis />,
             errorElement: <ErrorPage />,
@@ -222,6 +237,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: "/water/home",
+            element: <WaterHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: "/water/analysis",
             element: <WaterAnalysis />,
             errorElement: <ErrorPage />,
@@ -245,6 +265,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/dg",
+            element: <DGHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/dg/home",
             element: <DGHome />,
             errorElement: <ErrorPage />,
           },
@@ -276,6 +301,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: "/ups/home",
+            element: <UPSHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: "/ups/analysis",
             element: <UPSAnalysis />,
             errorElement: <ErrorPage />,
@@ -299,6 +329,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/temp",
+            element: <TempHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/temp/home",
             element: <TempHome />,
             errorElement: <ErrorPage />,
           },
@@ -340,6 +375,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: "/hvac/home",
+            element: <HVACHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: "/hvac/analysis",
             element: <HVACAnalysis />,
             errorElement: <ErrorPage />,
@@ -362,6 +402,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: "/fire/home",
+            element: <FireHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: "/fire/support",
             element: <Support />,
             errorElement: <ErrorPage />,
@@ -379,6 +424,11 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
+            path: "/nbsafe/home",
+            element: <NBSafeHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
             path: "/nbsafe/support",
             element: <Support />,
             errorElement: <ErrorPage />,
@@ -392,6 +442,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/trans",
+            element: <TransHome />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/trans/home",
             element: <TransHome />,
             errorElement: <ErrorPage />,
           },
@@ -420,7 +475,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/signin",
+    path: "/login",
     element: <SignIn />,
     errorElement: <ErrorPage />,
   },

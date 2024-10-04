@@ -10,7 +10,7 @@ export default function SideBar({ children }) {
     <>
       {open && (
         <Box
-          sx={{ display: { sm: "flex", md: "none" } }}
+          sx={{ display: { sm: "flex", md: "none" }}}
           open={open}
           onClick={handleClose(false)}
           id="sidebar"
@@ -20,8 +20,7 @@ export default function SideBar({ children }) {
         </Box>
       )}
       <Box
-        sx={{ display: { xs: "none", sm: "none", md: "flex" } }}
-        id="sidebar"
+        sx={{ display: { xs: "none", sm: "none", md: "flex", } }}
         className="sidebar"
       >
         <ul>{children}</ul>

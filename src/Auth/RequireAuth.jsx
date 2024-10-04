@@ -1,8 +1,17 @@
-import { useLocation, Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
 
+const RequireAuth = ({ children, roles }) => {
+  const { user} = useAuth();
+
+  if (!user || !user.role || !roles.includes(user.role)) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children ? children : <Outlet />;
+};
+
+export default RequireAuth;
 
     // const RequireAuth = ({ allowedRoles }) => {
     //     const { auth } = useAuth();
@@ -52,24 +61,24 @@ import { Cookies } from "react-cookie";
 //   };
 
 //method 4
-const RequireAuth = ({ allowedRoles }) => {
-    const { auth } = useAuth();
-    const location = useLocation();
+// const RequireAuth = ({ allowedRoles }) => {
+//     const { auth } = useAuth();
+//     const location = useLocation();
     
   
-    if (auth?.roles?.some(role => allowedRoles.includes(role))) {
-      return <Outlet />;
-    }
+//     if (auth?.roles?.some(role => allowedRoles.includes(role))) {
+//       return <Outlet />;
+//     }
   
-    if (auth?.roles?.includes('admin')) {
-      return <Navigate to="/admin" state={{ from: location }} replace />;
-    }
+//     if (auth?.roles?.includes('admin')) {
+//       return <Navigate to="/admin" state={{ from: location }} replace />;
+//     }
   
-    if (auth?.roles?.includes('user')) {
-      return <Navigate to="/user" state={{ from: location }} replace />;
-    }
+//     if (auth?.roles?.includes('user')) {
+//       return <Navigate to="/user" state={{ from: location }} replace />;
+//     }
   
-    return <Navigate to="/signin" state={{ from: location }} replace />;
-  };
+//     return <Navigate to="/signin" state={{ from: location }} replace />;
+//   };
 
-export default RequireAuth;
+// export default RequireAuth;

@@ -1,6 +1,8 @@
 import SideBar from "./SideBar"
 import { EmsSideBarData } from "../../data/SidBarData/SideBarData"
 import { NavLink } from "react-router-dom"
+import "./SideBar.css"
+import { Divider } from "@mui/material"
 
 export default function EmsSidebar() {
   return (
@@ -14,16 +16,14 @@ export default function EmsSidebar() {
                 isPending ? "pending" : "",
                 isActive ? "active" : "",
                 isTransitioning ? "transitioning" : "",
-              ]
+              ].join("")
             }
           >
-            <li className="text-wrap">
+            <li>
               {item.icon}
-              <br />
               {item.title}
             </li>
-            <hr />
-            
+            <Divider  sx={{ height: 2, borderBottom: '2px solid white' }} />
           </NavLink>
         ))}
     </SideBar>

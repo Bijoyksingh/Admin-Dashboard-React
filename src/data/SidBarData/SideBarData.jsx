@@ -17,7 +17,7 @@ export const AdminSideBarData = [
     {
         title: 'Dashboard',
         icon: <DashboardIcon />,
-        path: '/admin'
+        path: '/admin/home'
     },
     {
         title: 'Devices',
@@ -44,7 +44,7 @@ export const AdminSideBarData = [
 export const UserSideBarData = [
     {
         title: 'Dashboard',
-        path:"/user",
+        path:"/user/home",
         icon:<DashboardIcon/>
     },
     {
@@ -62,7 +62,7 @@ export const UserSideBarData = [
 export const EmsSideBarData=[
     {
         title: 'Dashboard',
-        path:"/ems",
+        path:"/ems/home",
         icon:<DashboardIcon/>
     },
     {
@@ -105,7 +105,7 @@ export const EmsSideBarData=[
 export const UPSSideBarData=[
     {
         title: 'Dashboard',
-        path:"/ups",
+        path:"/ups/home",
         icon:<DashboardIcon/>
     },
     {
@@ -127,7 +127,7 @@ export const UPSSideBarData=[
     export const WaterSideBarData=[
         {
             title: 'Dashboard',
-            path:"/water",
+            path:"/water/home",
             icon:<DashboardIcon/>
         },
         {
@@ -150,7 +150,7 @@ export const UPSSideBarData=[
     export const DGSideBarData=[
         {
             title: 'Dashboard',
-            path:"/dg",
+            path:"/dg/home",
             icon:<DashboardIcon/>
         },
         {
@@ -173,7 +173,7 @@ export const UPSSideBarData=[
     export const TempSideBarData=[
         {
             title: 'Dashboard',
-            path:"/temp",
+            path:"/temp/home",
             icon:<DashboardIcon/>
         },
         {
@@ -206,7 +206,7 @@ export const UPSSideBarData=[
     export const HVACSideBarData=[
         {
             title: 'Dashboard',
-            path:"/hvac",
+            path:"/hvac/home",
             icon:<DashboardIcon/>
         },
         {
@@ -224,7 +224,7 @@ export const UPSSideBarData=[
     export const FireSideBarData=[
         {
             title: 'Dashboard',
-            path:"/fire",
+            path:"/fire/home",
             icon:<DashboardIcon/>
         },
         {
@@ -236,7 +236,7 @@ export const UPSSideBarData=[
     export const NBSafeSideBarData=[
         {
             title: 'Dashboard',
-            path:"/nbsafe",
+            path:"/nbsafe/home",
             icon:<DashboardIcon/>
         },
         {
@@ -249,7 +249,7 @@ export const UPSSideBarData=[
     export const TransSideBarData=[
         {
             title: 'Dashboard',
-            path:"/trans",
+            path:"/trans/home",
             icon:<DashboardIcon/>
         },
         {

@@ -105,9 +105,12 @@ export default function ManageUsers() {
         <TableContainer sx={{ maxHeight: 550 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow sx={{ fontWeight: "bold" }}>
+              <TableRow>
                 {tHead.map((item, index) => (
-                  <TableCell key={index} colSpan={item.colSpan}>
+                  <TableCell key={index} colSpan={item.colSpan}
+                  sx={{backgroundColor:"#8dade0", fontWeight: "bold"}}
+                  >
+                    
                     {item.title}
                   </TableCell>
                 ))}

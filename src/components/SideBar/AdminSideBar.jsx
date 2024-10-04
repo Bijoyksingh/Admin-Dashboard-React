@@ -1,6 +1,8 @@
 import SideBar from './SideBar'
 import { AdminSideBarData } from '../../data/SidBarData/SideBarData'
 import { NavLink } from 'react-router-dom'
+import { Divider } from '@mui/material'
+import "./SideBar.css"
 
 export default function AdminSideBar() {
   return (
@@ -11,18 +13,17 @@ export default function AdminSideBar() {
            to={item.path}
            className={({ isActive, isPending, isTransitioning }) =>
              [
-               isPending ? "pending" : "",
                isActive ? "active" : "",
+               isPending ? "pending" : "",
                isTransitioning ? "transitioning" : "",
-             ]
+             ].join("")
            }
          >
            <li>
              {item.icon}
-             <br />
              {item.title}
            </li>
-           <hr />
+           <Divider  sx={{ height: 2, borderBottom: '2px solid white' }} />
          </NavLink> 
         ))}
     </SideBar>

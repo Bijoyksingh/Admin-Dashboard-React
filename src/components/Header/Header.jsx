@@ -157,7 +157,7 @@ export default function Header({ onClick }) {
             </Box>
 
             {/* avatar section */}
-            {isAuthenticated ? (
+            {/* {isAuthenticated ? (
               <Box>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
@@ -185,8 +185,8 @@ export default function Header({ onClick }) {
               <Button variant="contained" className="login" onClick={() => loginWithRedirect()} >
                 LOG IN
               </Button>
-            )}
-            {/* <Box >
+            )} */}
+            <Box >
             <NavLink className="login" to={"/signin"} >LOG IN</NavLink>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
@@ -204,7 +204,7 @@ export default function Header({ onClick }) {
         <MenuItem >Profile</MenuItem>
         <MenuItem >Logout<LogoutIcon/></MenuItem>
       </Menu>
-            </Box> */}
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>

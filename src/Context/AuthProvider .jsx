@@ -3,21 +3,17 @@ import { createContext, useState } from "react";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(null);
-
-    const login = (token) => {
-        setToken(token);
-      };
-    
-      const logout = () => {
-        setToken(null);
-      };
-
-    return (
-        <AuthContext.Provider value={{ token, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    )
+  const [auth, setAuth] = useState({ token: null, user: null });
+ 
+  const handleAuthChange = (newAuth) => {
+    setAuth(newAuth);
+  };
+ 
+  return (
+    <AuthContext.Provider value={{auth, setAuth: handleAuthChange }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export default AuthContext;

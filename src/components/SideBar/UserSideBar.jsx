@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { UserSideBarData } from "../../data/SidBarData/SideBarData";
 import SideBar from "./SideBar";
-
+import "./SideBar.css"
+import { Divider } from "@mui/material";
 
 export default function UserSideBar() {
   return (
@@ -16,16 +17,14 @@ export default function UserSideBar() {
                 isPending ? "pending" : "",
                 isActive ? "active" : "",
                 isTransitioning ? "transitioning" : "",
-              ]
+              ].join("")
             }
           >
             <li>
               {item.icon}
-              <br />
               {item.title}
             </li>
-            <hr />
-            
+            <Divider  sx={{ height: 2, borderBottom: '2px solid white' }} />
           </NavLink>
         ))}
     </SideBar>

@@ -155,3 +155,6 @@ export const UserSignUp = (userData) => {
 export const UserSignin = (user) => {
   return axios.post(`${apiUrl}/signin`, user)
 };
+// export const UserSignin = (user) => {
+//     return axios.post("www.meaiot.in/submit", user)
+//   };
