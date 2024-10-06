@@ -8,13 +8,12 @@ import Avatar from "@mui/material/Avatar";
 import { Link, NavLink } from "react-router-dom";
 import { NavData } from "../../data/NavData/NavData";
 import Logo from "/logo1.png";
-import { Button, IconButton, Menu, MenuItem, Tabs } from "@mui/material";
+import { IconButton, Menu, MenuItem, Tabs } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
-// import { Auth0Context } from "@auth0/auth0-react";
-import { useAuth0 } from "@auth0/auth0-react";
+import AuthContext from "../../Context/AuthProvider ";
 
 const logoStyle = {
   width: "3rem",
@@ -23,9 +22,8 @@ const logoStyle = {
 };
 
 export default function Header({ onClick }) {
-  const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
-  // const { isLoggedIn, userProfile, logout } =
-  //   useContext(Auth0Context);
+  const { auth, logout } = useContext(AuthContext);
+  const user = auth.user;
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -127,7 +125,7 @@ export default function Header({ onClick }) {
                 allowScrollButtonsMobile
                 aria-label="scrollable force tabs example"
               >
-                {NavData.map((item, index) => (
+                {NavData.filter(item => !item.authenticated || auth.user && item.userRole.includes(user.role)).map((item, index) => (
                   <NavLink
                     key={index}
                     to={item.path}
@@ -157,54 +155,27 @@ export default function Header({ onClick }) {
             </Box>
 
             {/* avatar section */}
-            {/* {isAuthenticated ? (
-              <Box>
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    src={user.picture}
-                    alt={user.name}
-                    sx={{ flexGrow: 1, background: "lightblue" }}
-                  />
-                </IconButton>
-                <Menu
-                  sx={{ mt: 1.5 }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <MenuItem>Profile</MenuItem>
-                  <MenuItem
-                    onClick={() => logout({ returnTo: window.location.origin })}
-                  >
-                    Logout
-                    <LogoutIcon />
-                  </MenuItem>
-                </Menu>
-              </Box>
-            ) : (
-              <Button variant="contained" className="login" onClick={() => loginWithRedirect()} >
-                LOG IN
-              </Button>
-            )} */}
+            { auth.user ? (
             <Box >
-            <NavLink className="login" to={"/signin"} >LOG IN</NavLink>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
-                alt="Remy Sharp"
+                alt={user.fullname}
                 src="#"
                 sx={{ flexGrow: 1, background: "lightblue" }}
               />
               </IconButton>
               <Menu
-              sx={{ mt: 1.5 }}
+              sx={{ mt: 1.5, }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         >
+          <h5 className="text-center bg-primary text-light p-3">{user.fullname}</h5>
         <MenuItem >Profile</MenuItem>
-        <MenuItem >Logout<LogoutIcon/></MenuItem>
+        <MenuItem onClick={logout}><NavLink className="text-dark text-decoration-none p-1" to={"/"}>Logout</NavLink><LogoutIcon/></MenuItem>
       </Menu>
             </Box>
+            ):(<NavLink className="login" to={"/login"} >LOG IN/SIGN UP</NavLink>)}
           </Toolbar>
         </Container>
       </AppBar>

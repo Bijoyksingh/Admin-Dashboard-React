@@ -11,9 +11,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Alert, AlertTitle, InputLabel, MenuItem, Select } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { UserSignUp } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../Context/AuthProvider ";
+
 const logoStyle = {
   width: "4rem",
   height: "auto",
@@ -30,6 +32,7 @@ export default function SignUp() {
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
+  const {setAuth}  = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -70,6 +73,7 @@ export default function SignUp() {
       .then((response) => {
         const { message } = response.data;
         if (message === "User account created successfully") {
+          setAuth({ user: userData });
           navigate(role === "admin" ? "/admin" : "/user");
         } else if (message === "Username already exists") {
           setError("Username already exists");

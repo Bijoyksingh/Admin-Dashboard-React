@@ -1,7 +1,7 @@
 import axios from "axios";
 const apiUrl = "/api/user";
 // const apiUrl = "http://Www.meaiot.in/signup";
-const deviceUrl = "/api/devices"
+const deviceUrl = "/api/devices";
 import { useEffect, useState } from "react";
 
 //get all the users data
@@ -28,46 +28,20 @@ export const AddUser = (addData) => {
   return axios.post(apiUrl, addData);
 };
 
-// export const GetUserById = async (id) => {
-//   try {
-//     const response = await axios.get(`${apiUrl}/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error fetching user:', error);
-//     return null;
-//   }
-// };
-// export const GetUser = (id) => {
-//   const [gotUser, setGotUser] = useState([]);
-//   useEffect(() => {
-//     axios
-//     .get(`${apiUrl}/${id}`)
-//     .then((response) => {
-//         // handle success
-//         setGotUser(response.data.user);
-//       })
-//       .catch((error) => {
-//         // handle error
-//         console.log(error);
-//       })
-//     },[id]);
-//   return {gotUser};
-// };
-
 //get user by id
 export const GetUser = (id) => {
   const [gotUser, setGotUser] = useState([]);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-       const response = await axios.get(`${apiUrl}/${id}`);
+        const response = await axios.get(`${apiUrl}/${id}`);
         setGotUser(response.data.user);
       } catch (error) {
         console.log(error);
       }
     };
     fetchUser();
-  },[id]);
+  }, [id]);
   return { gotUser };
 };
 
@@ -79,7 +53,6 @@ export function UpdateUser(id, newData) {
 export function DeleteUser(id) {
   return axios.delete(`${apiUrl}/${id}`);
 }
-
 
 // Devices
 //Get all devices
@@ -110,14 +83,14 @@ export const GetDevice = (id) => {
   useEffect(() => {
     const fetchDevice = async () => {
       try {
-       const response = await axios.get(`${deviceUrl}/${id}`);
-       setGotDevice(response.data.device);
+        const response = await axios.get(`${deviceUrl}/${id}`);
+        setGotDevice(response.data.device);
       } catch (error) {
         console.log(error);
       }
     };
     fetchDevice();
-  },[id]);
+  }, [id]);
   return { gotDevice };
 };
 //update device
@@ -129,32 +102,22 @@ export function DeleteDevice(id) {
   return axios.delete(`${deviceUrl}/${id}`);
 }
 
-//Sign Up Form Data
-//for Admin
-// export const  AdminSignUp = async(adminData) => {
-//   return await axios.post('/api/admin/signup', adminData)
-//   .then((response) => {
-//     console.log(response.message);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-// };
-
-//for User/Admin SignUp
-// client url
-// export const UserSignUp = (userData) => {
-//   return axios.post(`${apiUrl}`, userData)
-// };
-
+// SignUp User/Admin 
 export const UserSignUp = (userData) => {
-  return axios.post(`${apiUrl}/signup`, userData)
+  return axios.post(`${apiUrl}/signup`, userData);
 };
 
 //SignIn User/Admin
 export const UserSignin = (user) => {
-  return axios.post(`${apiUrl}/signin`, user)
+  return axios.post(`${apiUrl}/signin`, user);
 };
+
+// url given by client for signup
+// export const UserSignUp = (userData) => {
+//   return axios.post(`${apiUrl}`, userData)
+// };
+
+// url given by client for signup
 // export const UserSignin = (user) => {
 //     return axios.post("www.meaiot.in/submit", user)
 //   };

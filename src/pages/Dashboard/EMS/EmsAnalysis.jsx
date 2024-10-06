@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 
-
 export default function EmsAnalysis() {
   return (
     <div className="d-flex flex-row">

@@ -13,12 +13,16 @@ export const NavData=[
    {
       title: 'Admin',
       path:"/admin",
-      icon:<AccountCircleIcon/>
+      icon:<AccountCircleIcon/>,
+      authenticated: true,
+      userRole:"admin"
    },
    {
       title: 'User',
       path:"/user",
-      icon:<AccountCircleIcon/>
+      icon:<AccountCircleIcon/>,
+      authenticated: true,
+      userRole:"user"
    },
  {
     title: 'ENERGY',

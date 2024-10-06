@@ -16,10 +16,8 @@ import { useContext, useState } from "react";
 import { UserSignin } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
-import { Cookies } from "react-cookie";
-import useAuth from "../hooks/useAuth";
 import AuthContext from "../Context/AuthProvider ";
-import {jwtDecode} from 'jwt-decode';
+// import {jwtDecode} from 'jwt-decode';
 
 const logoStyle = {
   width: "4rem",
@@ -32,6 +30,7 @@ const defaultTheme = createTheme();
 export default function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(null);
   const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -48,11 +47,12 @@ export default function SignIn() {
       const data = response.data;
       console.log(data)
       if (data.message === "User signed in successfully"){
-        const token = data.token;
-        const user = jwtDecode(token);
-        // Cookies.set('authToken', token, { expires: 7 });
-        setAuth({ token, user });
-        console.log(user.role)
+        // const token = data.token;
+        // const user = jwtDecode(token);
+        // Cookies.set('user', user, { expires: 7 });
+        // setAuth({ token, user });
+        const user = data.user;
+        setAuth({ user }, rememberMe);
         navigate(user.role === "admin" ? "/admin" : "/user", { replace: true }); 
       }else {
         setError(data.message);
@@ -64,30 +64,6 @@ export default function SignIn() {
       console.error(error);
     });
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (!username || !password) {
-  //     setError("Please fill out all fields");
-  //     return;
-  //   }
-  //   const user = { username, password };
-  //   UserSignin(user)
-  //   .then((response) => {
-  //     if (response.data.role === "admin") {
-  //       // Redirect to admin page
-  //       navigate("/admin", { replace: true });
-  //     } else {
-  //       // Redirect to user page
-  //       navigate("/user", { replace: true });
-  //     }
-  //     console.log(response);
-  //   })
-  //   .catch((error) => {
-  //     setError(error.response.data.message);
-  //     console.error(error);
-  //   });
-  // };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -133,20 +109,8 @@ export default function SignIn() {
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
-            {/* <div className="d-flex align-items-center justify-content-center">
-              <InputLabel className="fs-6 px-3 fw-bold">Select Role:</InputLabel>
-            <Select
-              variant="outlined"
-              value={role}
-              onChange={handleRoleChange}
-              sx={{ width:"8rem"}}
-            >
-              <MenuItem value="admin">Admin</MenuItem>
-              <MenuItem value="user">User</MenuItem>
-            </Select>
-            </div> */}
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value={rememberMe} onChange={(e) => setRememberMe(e.target.value)} color="primary" />}
               label="Remember me"
             />
             {error && (

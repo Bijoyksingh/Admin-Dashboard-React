@@ -1,5 +1,3 @@
-
-
 export default function DGHome() {
   return (
     <div>

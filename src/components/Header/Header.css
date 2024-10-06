@@ -8,9 +8,9 @@ text-decoration: none;
 .nav-items a.active{
   color: rgb(34, 24, 215);
   font-weight:900;
-  font-size: 23px;
-  padding-top: 0;
-  border-bottom: 5px solid blue;
+  font-size: 18px;
+  /* padding-top: 0; */
+  border-bottom: 3px solid blue;
 }
 
 .nav-items{
@@ -37,7 +37,7 @@ flex-wrap: nowrap;
   background-color: #0d60e6;
   color: white;
   padding: 5px 10px;
-  font-size: 20px;
+  font-size: 15px;
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
@@ -47,5 +47,5 @@ flex-wrap: nowrap;
 .login:hover{
   background-color: white;
   color: #008CBA;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 5px #999;
 }

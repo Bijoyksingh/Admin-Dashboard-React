@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import DGSideBar from "../../../components/SideBar/DGSideBar";
 import { Grid } from "@mui/material";
 
-
 export default function DGLayout() {
   return (
     <Grid container justifyContent={"space-evenly"}>
@@ -13,6 +12,5 @@ export default function DGLayout() {
       <Outlet />
     </Grid>
   </Grid>
-
   )
 }
