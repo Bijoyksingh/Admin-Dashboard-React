@@ -3,7 +3,7 @@ import Extra from "../pages/Extra";
 import Extra1 from "../pages/Extra1";
 import ErrorPage from "../ErrorPage.jsx";
 import NotFound from "../pages/NotFound.jsx";
-// import SignIn from "../pages/SignIn.jsx";
+import SignIn from "../pages/SignIn.jsx";
 import SignUp from "../pages/SignUp.jsx";
 import Support from "../pages/Support.jsx";
 import MainLayout from "./MainLayout.jsx";
@@ -474,11 +474,11 @@ export const router = createBrowserRouter([
     element: <SignUp />,
     errorElement: <ErrorPage />,
   },
-  // {
-  //   path: "/login",
-  //   element: <SignIn />,
-  //   errorElement: <ErrorPage />,
-  // },
+  {
+    path: "/login",
+    element: <SignIn/>,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/extra",
     element: <Extra />,
